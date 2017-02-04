@@ -4,6 +4,7 @@ SoundFile file;
 
 PImage s, s1, s2, s3, s4, s5, s6;
 
+
 // some buttons
 int[][] buttons = { {300, 240}, {350, 240}, {300, 485}, {350, 485}};
 //int[][]startButton = {{800, 240}};
@@ -41,6 +42,7 @@ boolean timerFlag = false;
 boolean paused = true;
 boolean temperatureFlag =false;
 int mousepressed = 0;
+int pausedTime = 0;
 
 
 float frGreen = 255;
@@ -101,7 +103,7 @@ int timerSeconds() {
       file.play();
       //text(text[2],960,240);
     }
-    display = total - startTime;
+    display = total - startTime + inputTime * 60;
     seconds = display%60;
     if (seconds>=0)
       return floor(seconds);
@@ -111,7 +113,7 @@ int timerSeconds() {
 
 int timerMinutes() {
   int minutes = display/60;
-  println("Minutes=",minutes);
+  //println("Minutes=",minutes);
   return floor(minutes);
 }
 
@@ -302,28 +304,22 @@ void mouseReleased() {
     &&(mouseY > startButton[1]) && (mouseY < startButton[1]+startButtonY)) {
 
     //store the starttime when the button is pressed
-    x = startTime;
+    int startt = startTime; 
     start = !start;
     mousepressed ++;
     timerFlag = false;
     if (start==true) {
-      if (mousepressed == 1)
-        total = x + inputTime *60;
-      else total = x - y;
-    } else {
-      y = x - total;
-      //println(display);
-    }
-    //println("Mousepressed=", mousepressed);
-    //println("Totalnow=", total);
-    //println("Start=", start);
+      total = startt + pausedTime;
+    }else{
+      pausedTime = total - startt;     
+    }        
   }
 
   if ((mouseX > buttons[0][0]) && (mouseX < buttons[0][0]+buttonX)
     &&(mouseY > buttons[0][1]) && (mouseY < buttons[0][1]+buttonY))
   {
-    inputTime++;
     timerFlag = true;
+    inputTime++;
   }
   if ((mouseX > buttons[1][0]) && (mouseX < buttons[1][0]+buttonX)
     &&(mouseY > buttons[1][1]) && (mouseY < buttons[1][1]+buttonY)) {
