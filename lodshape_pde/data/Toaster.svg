@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="524px" height="320px" viewBox="0 0 524 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="-2.84217094e-14" width="516" height="312" rx="20"></rect>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter2" in2="SourceAlpha" operator="out" result="shadowBlurOuter2"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.236526268 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="516" height="312" fill="white">
+            <use xlink:href="#path-2"></use>
+        </mask>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-7">
+            <stop stop-color="#FFEC05" stop-opacity="0.833644701" offset="0%"></stop>
+            <stop stop-color="#4A4A4A" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-8" x="14" y="30" width="488" height="252" rx="21"></rect>
+        <mask id="mask-9" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="488" height="252" fill="white">
+            <use xlink:href="#path-8"></use>
+        </mask>
+        <mask id="mask-11" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="488" height="252" fill="white">
+            <use xlink:href="#path-8"></use>
+        </mask>
+        <rect id="path-12" x="14" y="30" width="488" height="252" rx="21"></rect>
+        <pattern id="pattern-14" width="5.36029412" height="5.36029412" x="8.63970588" y="24.6397059" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-15" transform="scale(0.111672794,0.111672794)"></use>
+        </pattern>
+        <image id="image-15" width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAALNJREFUaAXtmEEKwzAMBOP+yf9/gB/V0uMexZBtA5ObwJLiGQuM1977fQ2+c84aLL/urv+a/Mw/rnUDv7aiAQ1AAh4hCBCnawAjhAUeb2B0r/nCuvtuM63/eANuAM4gTtcARggLaAACxOkawAhhAQ1AgDh9Te8evgth5lnAGUge/UgDfebZUQPJox9poM88O2ogefQj34X6zLOjM5A8+pEG+syzowaSRz/SQJ95dtRA8uhHHxtJG5lrDDU9AAAAAElFTkSuQmCC"></image>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-16">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <mask id="mask-17" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="488" height="252" fill="white">
+            <use xlink:href="#path-12"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(4.000000, 2.000000)">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <g id="Rectangle" opacity="0.437726449" style="mix-blend-mode: hard-light;">
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
+                <use fill-opacity="0.303611866" fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-2"></use>
+                <use stroke="#979797" mask="url(#mask-6)" stroke-width="2" xlink:href="#path-2"></use>
+            </g>
+            <mask id="mask-10" fill="white">
+                <use xlink:href="#path-8"></use>
+            </mask>
+            <g id="Rectangle-1" stroke="#4A4A4A" mask="url(#mask-9)" stroke-width="2" fill-opacity="0.9" fill="url(#linearGradient-7)" opacity="0.866791214" style="mix-blend-mode: overlay;">
+                <use mask="url(#mask-11)" xlink:href="#path-8"></use>
+            </g>
+            <mask id="mask-13" fill="white">
+                <use xlink:href="#path-12"></use>
+            </mask>
+            <g id="Rectangle-2" opacity="0.866791214" style="mix-blend-mode: overlay;">
+                <use fill-opacity="0.9" fill="url(#pattern-14)" fill-rule="evenodd" xlink:href="#path-12"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-16)" xlink:href="#path-12"></use>
+                <use stroke="#4A4A4A" mask="url(#mask-17)" stroke-width="2" xlink:href="#path-12"></use>
+            </g>
+        </g>
+    </g>
+</svg>

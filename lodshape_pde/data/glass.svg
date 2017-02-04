@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="488px" height="252px" viewBox="0 0 488 252" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="14" y="30" width="488" height="252" rx="21"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="488" height="252" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <pattern id="pattern-3" width="5.36029412" height="5.36029412" x="8.63970588" y="24.6397059" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-4" transform="scale(0.111672794,0.111672794)"></use>
+        </pattern>
+        <image id="image-4" width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAALNJREFUaAXtmEEKwzAMBOP+yf9/gB/V0uMexZBtA5ObwJLiGQuM1977fQ2+c84aLL/urv+a/Mw/rnUDv7aiAQ1AAh4hCBCnawAjhAUeb2B0r/nCuvtuM63/eANuAM4gTtcARggLaAACxOkawAhhAQ1AgDh9Te8evgth5lnAGUge/UgDfebZUQPJox9poM88O2ogefQj34X6zLOjM5A8+pEG+syzowaSRz/SQJ95dtRA8uhHHxtJG5lrDDU9AAAAAElFTkSuQmCC"></image>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.9" opacity="0.866791214">
+        <g id="Group" transform="translate(-14.000000, -30.000000)" stroke="#4A4A4A" stroke-width="2" fill="url(#pattern-3)">
+            <use id="Rectangle-2" mask="url(#mask-2)" style="mix-blend-mode: overlay;" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
