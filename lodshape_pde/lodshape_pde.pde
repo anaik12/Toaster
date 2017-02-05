@@ -2,7 +2,12 @@ import processing.sound.*; //<>// //<>//
 
 SoundFile file, file1, file2;
 
-PImage s, s1, s2, s3, s4, s5, s6, s7, s8, s9, breadImageNumber;
+PImage s, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+//Uncomment in processing.js
+//Audio file = new Audio();
+//Audio file1 = new Audio();
+//Audio file2 = new Audio();
 
 
 // some buttons
@@ -50,25 +55,15 @@ int pausedTime = 0;
 boolean isPaused = false;
 boolean loadBread = false;
 boolean isPreheat = false;
-
-
 float frGreen = 255;
-
-//triangle() Triangle1, Triangle2;
 int currentTime;
 boolean doneToasting = false;
 boolean doorOpen = false;
-
-
-//int minutes = inputTime -1;
 int seconds;
 int reset = 60;
 int x, y, startTime, total, display;
-
 PFont f;
-
 int inputTime;
-
 int fahrenheit;
 float roomTempFahrenheit;
 
@@ -104,11 +99,17 @@ int fahrenheit_Celsius(int f) {
   return round((f-32) * 5/9);
 }
 
+//Uncomment in preocessing.js
+//void loadSounds(){
+//  file.setAttribute("src", "toaster-oven-ding.mp3");
+//  file1.setAttribute("src", "openDoor.mp3");
+//  file2.setAttribute("src", "closeDoor.mp3");
+//}
+
 int timerSeconds() {
   if (start == true) {
-    if (display == 1) {
+    if (round(display) == 1) {
       file.play();
-      //text(text[2],960,240);
     }
     display = total - startTime + inputTime * 60;
     seconds = display%60;
@@ -133,9 +134,7 @@ void colorFill() {
   }
 }
 
-void loadBread(){
-  breadImageNumber = s6;
-}
+void loadSounds(){}
 
 /* @pjs font="custom.ttf"; */
 void setup() {
@@ -154,11 +153,13 @@ void setup() {
   s8 = loadImage("slice-of-bread-medium.png");
   s9 = loadImage("slice-of-bread-dark.png");
   f = createFont("DS-DIGI.TTF", 24, true);
+
   inputTime = 0;
   fahrenheit = 105;
   roomTempFahrenheit = int(random(68,77));
   temperatureSet();
-  //println(PFont.list());
+  //Uncomment in processing.js
+  //loadSounds();
 
   file = new SoundFile(this, "toaster-oven-ding.wav");
   file1 = new SoundFile(this, "openDoor.mp3");
@@ -390,7 +391,7 @@ void mouseReleased() {
   {
     //item++;
     //item = item%3;
-    loadBread = true;
+    loadBread = !loadBread;
     //loadBread();
       //if (loadBread == true)
     //image(s6, 400, 300, 200, 100);
