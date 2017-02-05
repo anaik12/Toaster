@@ -266,6 +266,11 @@ void draw() {
         timeStringMinutes = str(inputTime);
         timeStringSeconds = "00";
       }
+      
+      if (isPaused == true){
+        timeStringMinutes = str(timerMinutes());
+        timeStringSeconds = str(display % 60);
+      }
 
       if (start == false) {
         text(startOptions[0], 940, 260);                                      
