@@ -2,7 +2,7 @@ import processing.sound.*; //<>// //<>//
 
 SoundFile file, file1, file2;
 
-PImage s, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+PImage s, s1, s2, s3, s4, s5, s6, s7, s8, s9, breadnumber;
 
 //Uncomment in processing.js
 //Audio file = new Audio();
@@ -107,9 +107,16 @@ int fahrenheit_Celsius(int f) {
 //  file2.setAttribute("src", "closeDoor.mp3");
 //}
 
+void breadChoice(){
+  if (shadeChoice == 0 || shadeChoice == 1) breadnumber = s7;
+  else if(shadeChoice == 2) breadnumber = s8;
+  else breadnumber = s9;
+}
+
 int timerSeconds() {
   if (start == true) {
     if (round(display) == 1) {
+      breadChoice();
       file.play();
     }
     display = total - startTime + inputTime * 60;
@@ -153,6 +160,8 @@ void setup() {
   s7 = loadImage("slice-of-bread-light.png");
   s8 = loadImage("slice-of-bread-medium.png");
   s9 = loadImage("slice-of-bread-dark.png");
+  //breadChoice();
+  breadnumber = s6;
   f = createFont("DS-DIGI.TTF", 24, true);
 
   inputTime = 0;
@@ -195,14 +204,14 @@ void draw() {
   if (start==false) {
     image(s, 220, 100, 850, 500);
     if (loadBread == true)
-      image(s6, 550, 275, 200, 100);
+      image(breadnumber, 550, 275, 200, 100);
     if (doorOpen == false) 
       image(s1, 280, 130, 720, 420);
     else image(s4, 200, 560, 880, 200);
   } else {
     image(s2, 220, 100, 850, 500);
     if (loadBread == true)
-      image(s6, 550, 275, 200, 100);
+      image(breadnumber, 550, 275, 200, 100);
     if (doorOpen == false)
       image(s1, 280, 130, 720, 420);
     else image(s5, 200, 560, 880, 200);
