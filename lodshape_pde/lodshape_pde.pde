@@ -1,8 +1,8 @@
 import processing.sound.*; //<>// //<>//
 
-SoundFile file;
+SoundFile file, file1, file2;
 
-PImage s, s1, s2, s3, s4, s5, s6;
+PImage s, s1, s2, s3, s4, s5, s6, s7, s8, s9, breadImageNumber;
 
 
 // some buttons
@@ -16,12 +16,15 @@ int filament1[] = {580, 8};
 int filament2[] = {480, 8};
 int powerOn[]= {10, 100};
 int startButton[]= {890, 230};
+int preheat[]={890, 430};
 int heatingMode[] = {300, 300};
 int items[] = {10, 200};
 int shadeControl[] = {300, 370};
 int temperature[] = {300, 430};
 int buttonX = 40;
 int buttonY = 40;
+int preheatX = 95;
+int preheatY = 40;
 int startButtonX = 95;
 int startButtonY = 40;
 int heatingModeX = 95;
@@ -30,7 +33,8 @@ int temperatureX = 90;
 int temperatureY = 40;
 String startOptions[] = {"START", "PAUSE", "DONE"};
 String modes[] = {"Mode", "TOAST", "BAGEL", "BAKE", "BROIL", "PIZZA", "CONV."};
-String itemName[] = {"<Pick>", "Bread", "Chicken"};
+//String itemName[] = {"<Pick>", "Bread", "Chicken"};
+String itemName[] = {"Bread"};
 String shade[] = {"Shade", "LIGHT", "MEDIUM", "DARK"};
 int mode = 0;
 int item = 0;
@@ -43,6 +47,9 @@ boolean paused = true;
 boolean temperatureFlag =false;
 int mousepressed = 0;
 int pausedTime = 0;
+boolean isPaused = false;
+boolean loadBread = false;
+boolean isPreheat = false;
 
 
 float frGreen = 255;
@@ -63,6 +70,7 @@ PFont f;
 int inputTime;
 
 int fahrenheit;
+float roomTempFahrenheit;
 
 HashMap<String, Integer> hm = new HashMap<String, Integer>();
 
@@ -92,7 +100,6 @@ int getTemperature(){
   return fahrenheit;
 }
 
-
 int fahrenheit_Celsius(int f) {
   return round((f-32) * 5/9);
 }
@@ -118,11 +125,16 @@ int timerMinutes() {
 }
 
 void colorFill() {
-  if (inputTime != 0) { 
-    frGreen = frGreen-0.25;
-    fill(255, frGreen, frGreen);
+  if (isPreheat == true && roomTempFahrenheit < fahrenheit) { 
+    frGreen = frGreen - 1;
+    //fill(255, frGreen, frGreen);
+    roomTempFahrenheit = roomTempFahrenheit + 0.25;
     //println("FrGreen=", frGreen);
   }
+}
+
+void loadBread(){
+  breadImageNumber = s6;
 }
 
 /* @pjs font="custom.ttf"; */
@@ -133,17 +145,24 @@ void setup() {
   // of the current sketch to load successfully
   s = loadImage("ToasterOvenOff.png");
   s1 = loadImage("DoorClosedOff.png");
-  s2 = loadImage("CompleteOven1png.png");
+  s2 = loadImage("ToasterOvenOn.png");
   s3 = loadImage("DoorClosedOn.png");
   s4 = loadImage("DoorOpenOff.png");
   s5 = loadImage("DoorOpenOn.png");
+  s6 = loadImage("slice-of-bread-normal.png");
+  s7 = loadImage("slice-of-bread-light.png");
+  s8 = loadImage("slice-of-bread-medium.png");
+  s9 = loadImage("slice-of-bread-dark.png");
   f = createFont("DS-DIGI.TTF", 24, true);
   inputTime = 0;
   fahrenheit = 105;
+  roomTempFahrenheit = int(random(68,77));
   temperatureSet();
   //println(PFont.list());
 
   file = new SoundFile(this, "toaster-oven-ding.wav");
+  file1 = new SoundFile(this, "openDoor.mp3");
+  file2 = new SoundFile(this, "closeDoor.mp3");
 }
 
 void draw() {
@@ -159,26 +178,45 @@ void draw() {
   //to update input time on increment decrement
   //total = x + inputTime *60;
 
+  //image(s6, 400, 300, 200, 100);
+
   if (powerFlag == true) {
+    fill(127);
+    rect(items[0], items[1], 150, 40, 7);
+    //text(itemName[item], 80, 230);
     fill(0, 255, 0);
     text("On", 45, 145);
+    text("Bread", 80, 230);
+
   } else text("Off", 45, 145);
   startTime= millis()/1000;
   if (start==false) {
     image(s, 220, 100, 850, 500);
-    if (doorOpen == false)
+    if (loadBread == true)
+      image(s6, 550, 275, 200, 100);
+    if (doorOpen == false) 
       image(s1, 280, 130, 720, 420);
     else image(s4, 200, 560, 880, 200);
   } else {
-    image(s, 220, 100, 850, 500);
+    image(s2, 220, 100, 850, 500);
+    if (loadBread == true)
+      image(s6, 550, 275, 200, 100);
     if (doorOpen == false)
-      image(s3, 280, 130, 720, 420);
+      image(s1, 280, 130, 720, 420);
     else image(s5, 200, 560, 880, 200);
   }
 
   if (powerFlag == true) {
+    
     if (doorOpen == false) {
       //if(frGreen >= 0) colorFill();
+      if(isPreheat == true){
+      colorFill();
+      fill(255, frGreen, frGreen);
+      }else fill(0);
+     
+      rect(preheat[0], preheat[1], preheatX, preheatY,7);
+      
       fill(255, frGreen, frGreen);
       rect(filamentRods[0][0], filamentRods[0][1], filament1[0], filament1[1], 10);
       rect(filamentRods[1][0], filamentRods[1][1], filament1[0], filament1[1], 10);
@@ -192,10 +230,13 @@ void draw() {
       rect(heatingMode[0], heatingMode[1], heatingModeX, heatingModeY, 7);
       rect(shadeControl[0], shadeControl[1], heatingModeX, heatingModeY, 7);
       rect(temperature[0], temperature[1], temperatureX, temperatureY, 7);
-
-
+      
+      //colorFill();
+      //fill(255, frGreen, frGreen);
+      //rect(preheat[0], preheat[1], preheatX, preheatY,7);
+  
       fill(127);
-      rect(items[0], items[1], 150, 40, 7);
+      
 
       fill(255);
       triangle(310, 270, 320, 250, 330, 270);
@@ -217,16 +258,16 @@ void draw() {
       textAlign(CENTER);
       //timerMinutes();
 
-      if (timerFlag == true) {
-        timeStringMinutes = str(inputTime);
-        timeStringSeconds = "00";
-      } else {
+      if (timerFlag == false && isPaused == false) {
         timeStringMinutes = str(hour());
         timeStringSeconds = str(minute());
+      } else {
+        timeStringMinutes = str(inputTime);
+        timeStringSeconds = "00";
       }
 
       if (start == false) {
-        text(startOptions[0], 940, 260);
+        text(startOptions[0], 940, 260);                                      
       } else if (start == true) {
         if (frGreen >= 0) colorFill();
         fill(255, 0, 0);
@@ -268,19 +309,23 @@ void draw() {
       //if(modeFlag==true)
       //{
       text(modes[mode], 345, 330);
-      text(itemName[item], 80, 230);
       text(shade[shadeChoice], 345, 400);
-
+      
       if (temperatureFlag == false) {
         text(fahrenheit, 335, 460);
         text("F", 370, 460);
+        text(floor(roomTempFahrenheit), 925, 460);
+        text("F", 960, 460);
       } else {
         //text("|", 395, 470);
         text(fahrenheit_Celsius(fahrenheit), 335, 460);
         text("C", 370, 460);
+        text(fahrenheit_Celsius(floor(roomTempFahrenheit)), 925, 460);
+        text("C", 960, 460);
       }
     }
   }
+
   if (doorOpen == false) {
     fill(100);
     rect(door[0], door[1], doorX, doorY, 7);
@@ -302,11 +347,15 @@ void mouseReleased() {
   }
   if ((mouseX > startButton[0]) && (mouseX < startButton[0]+startButtonX)
     &&(mouseY > startButton[1]) && (mouseY < startButton[1]+startButtonY)) {
-
+   
+      mousepressed ++;
+      if(mousepressed%2 != 0){
+       isPaused = true;
+      }
     //store the starttime when the button is pressed
     int startt = startTime; 
     start = !start;
-    mousepressed ++;
+    
     timerFlag = false;
     if (start==true) {
       total = startt + pausedTime;
@@ -339,8 +388,13 @@ void mouseReleased() {
   if ((mouseX > items[0]) && (mouseX < items[0]+150)
     &&(mouseY > items[1]) && (mouseY < items[1]+40))
   {
-    item++;
-    item = item%3;
+    //item++;
+    //item = item%3;
+    loadBread = true;
+    //loadBread();
+      //if (loadBread == true)
+    //image(s6, 400, 300, 200, 100);
+    
   }
   if ((mouseX > shadeControl[0]) && (mouseX < shadeControl[0]+90)
     &&(mouseY > shadeControl[1]) && (mouseY < shadeControl[1]+40))
@@ -365,14 +419,23 @@ void mouseReleased() {
     fahrenheit = fahrenheit + 50;
   }
   if ((mouseX > door[0]) && (mouseX < door[0]+doorX)
-    &&(mouseY > door[1]) && (mouseY < door[1]+doorY))
+    &&(mouseY > door[1]) && (mouseY < door[1]+30))
   {
+    file1.play();
     doorOpen = true;
     if (doorOpen ==false) start = false;
   }
-  if (mouseX > 500 && mouseX < 600
+  if (mouseX > 500 && mouseX < 900
     && mouseY > 700 && mouseY < 800)
   {
+    file2.play();
     doorOpen = false;
   }
+  if ((mouseX > preheat[0]) && (mouseX < preheat[0]+preheatX)
+  &&(mouseY > preheat[1]) && (mouseY < preheat[1]+preheatY))
+  {
+    isPreheat = !isPreheat;
+    //println("\n isPreheat: ", isPreheat);
+  }
+  
 }
