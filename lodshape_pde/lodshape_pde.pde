@@ -21,7 +21,8 @@ int filament1[] = {580, 8};
 int filament2[] = {480, 8};
 int powerOn[]= {10, 100};
 int startButton[]= {890, 230};
-int preheat[]={890, 430};
+int preheatdummy[]={890, 410};
+int preheat[]={890, 410};
 int heatingMode[] = {300, 300};
 int items[] = {10, 200};
 int shadeControl[] = {300, 370};
@@ -29,7 +30,7 @@ int temperature[] = {300, 430};
 int buttonX = 40;
 int buttonY = 40;
 int preheatX = 95;
-int preheatY = 40;
+int preheatY = 60;
 int startButtonX = 95;
 int startButtonY = 40;
 int heatingModeX = 95;
@@ -217,6 +218,7 @@ void draw() {
       }else fill(0);
      
       rect(preheat[0], preheat[1], preheatX, preheatY,7);
+      //rect(preheatdummy[0], preheatdummy[1], preheatX, preheatY,7);
       
       fill(255, frGreen, frGreen);
       rect(filamentRods[0][0], filamentRods[0][1], filament1[0], filament1[1], 10);
@@ -309,6 +311,9 @@ void draw() {
         }
       }
       fill(0, 255, 0);
+      textSize(20);
+      text("Preheat", 940, 430);
+      textSize(35);
       text(timeStringMinutes, 325, 215);
       text(":", 350, 215);
       text(timeStringSeconds, 375, 215);
